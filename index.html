@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>SANDRO for SIX - Jackpot 125M €</title>
+    
+    <!-- ICONE PER IPHONE/IPAD -->
+    <link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' fill='%23000000'/%3E%3Ctext x='90' y='130' font-size='120' text-anchor='middle' fill='%23FFD700' font-family='Arial'%3E🎰%3C/text%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" sizes="152x152" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 152 152'%3E%3Crect width='152' height='152' fill='%23000000'/%3E%3Ctext x='76' y='110' font-size='100' text-anchor='middle' fill='%23FFD700'%3E🎰%3C/text%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" sizes="167x167" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 167 167'%3E%3Crect width='167' height='167' fill='%23000000'/%3E%3Ctext x='84' y='120' font-size='110' text-anchor='middle' fill='%23FFD700'%3E🎰%3C/text%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" sizes="120x120" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' fill='%23000000'/%3E%3Ctext x='60' y='85' font-size='80' text-anchor='middle' fill='%23FFD700'%3E🎰%3C/text%3E%3C/svg%3E">
+    
+    <!-- META PER IPHONE/IPAD -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="SANDRO 4 SIX">
+    <meta name="theme-color" content="#000000">
+    
+    <style>
+        /* FONT MOLTO VISIBILI - OTTIMIZZATI PER LA LETTURA */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Roboto:wght@400;500;700;900&family=Rubik:wght@700;800;900&family=Archivo+Black&family=Anton&family=Bebas+Neue&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #0a0c15;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Roboto', sans-serif;
+            padding: 12px;
+            position: relative;
+        }
+
+        /* CONTAINER PRINCIPALE */
+        .slot-container {
+            max-width: 1000px;
+            width: 100%;
+            background: #131724;
+            border-radius: 48px 48px 32px 32px;
+            padding: 24px;
+            border: 2px solid #FFD700;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.8);
+            position: relative;
+            z-index: 10;
+        }
+
+        /* HEADER JACKPOT - AREA DOVE APPARE IL POPUP */
+        .jackpot-header {
+            background: #1a1f2e;
+            border-radius: 32px;
+            padding: 20px;
+            margin-bottom: 24px;
+            border: 2px solid #FFD700;
+            text-align: center;
+            position: relative;
+            min-height: 160px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .jackpot-header:hover {
+            transform: scale(1.02);
+            border-color: #FFA500;
+            box-shadow: 0 0 30px rgba(255,215,0,0.3);
+        }
+
+        .jackpot-header:active {
+            transform: scale(0.98);
+        }
+
+        .jackpot-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #FFD700;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .jackpot-amount {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(2.5rem, 9vw, 4.5rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, #FFD700, #FFA500, #FFD700);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 3px;
+            line-height: 1.2;
+            text-shadow: 0 0 30px rgba(255,215,0,0.7);
+            -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+        }
+
+        .jackpot-date {
+            font-family: 'Rubik', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #ffffff;
+            margin-top: 8px;
+            text-shadow: 0 2px 4px #000;
+            background: rgba(0,0,0,0.3);
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 30px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* AREA RULLI */
+        .reels-area {
+            background: #0f131c;
+            border-radius: 40px;
+            padding: 24px;
+            border: 2px solid #FFD700;
+            margin-bottom: 24px;
+        }
+
+        /* GRIGLIA RULLI */
+        .reels-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        /* RULLO SINGOLO - FONT GRANDI E VISIBILI */
+        .reel {
+            background: #1e2434;
+            border-radius: 24px;
+            padding: 20px 8px;
+            border: 2px solid #FFD700;
+            text-align: center;
+            min-height: 130px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 5px 0 #b8860b;
+        }
+
+        .reel.spinning {
+            animation: reelSpin 0.2s linear infinite;
+            background: #2a3142;
+        }
+
+        @keyframes reelSpin {
+            0% { transform: translateY(0); }
+            25% { transform: translateY(-4px); }
+            75% { transform: translateY(4px); }
+            100% { transform: translateY(0); }
+        }
+
+        .reel .label {
+            font-family: 'Rubik', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #FFD700;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 4px #000;
+        }
+
+        .reel .value {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(2.5rem, 7vw, 4.2rem);
+            font-weight: 400;
+            color: #ffffff;
+            text-shadow: 0 0 20px #FFD700, 0 4px 8px #000;
+            line-height: 1;
+            letter-spacing: 2px;
+        }
+
+        .reel .value.highlight {
+            color: #FFD700;
+            transform: scale(1.2);
+            text-shadow: 0 0 40px #FFA500, 0 4px 8px #000;
+            transition: all 0.2s ease;
+        }
+
+        /* RULLI SPECIALI - FONT VISIBILI */
+        .special-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .special-reel {
+            border-radius: 28px;
+            padding: 20px 15px;
+            text-align: center;
+            border: 2px solid #ffffff;
+            min-height: 110px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .special-reel.jolly {
+            background: linear-gradient(135deg, #2563eb, #1e3a8a);
+        }
+
+        .special-reel.super {
+            background: linear-gradient(135deg, #dc2626, #991b1b);
+        }
+
+        .special-reel.spinning {
+            animation: specialSpin 0.2s ease-in-out infinite;
+        }
+
+        @keyframes specialSpin {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        .special-reel .label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: white;
+            text-transform: uppercase;
+            text-shadow: 0 2px 5px #000, 0 0 20px currentColor;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .special-reel .value {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 7vw, 4.5rem);
+            font-weight: 400;
+            color: white;
+            text-shadow: 0 4px 8px #000, 0 0 30px rgba(255,255,255,0.5);
+            line-height: 1;
+            letter-spacing: 2px;
+        }
+
+        /* PANNELLO CONTROLLI */
+        .controls {
+            background: #1a1f2e;
+            border-radius: 40px;
+            padding: 20px;
+            border: 2px solid #FFD700;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        /* PULSANTE SPIN */
+        .spin-button {
+            background: linear-gradient(145deg, #dc2626, #991b1b);
+            border: none;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 3px solid #FFD700;
+            color: white;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            text-shadow: 0 4px 6px #000;
+            cursor: pointer;
+            box-shadow: 0 8px 0 #4a0000, 0 0 20px rgba(220,38,38,0.8);
+            transition: all 0.1s ease;
+            letter-spacing: 2px;
+        }
+
+        .spin-button:active {
+            transform: translateY(5px);
+            box-shadow: 0 3px 0 #4a0000, 0 0 30px rgba(220,38,38,0.9);
+        }
+
+        .spin-button.disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        /* ULTIMA GIOCATA */
+        .last-spin-time {
+            font-family: 'Rubik', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #ffffff;
+            margin-top: 12px;
+            text-align: center;
+            background: rgba(0,0,0,0.3);
+            padding: 8px 16px;
+            border-radius: 30px;
+            border: 1px solid rgba(255,215,0,0.3);
+        }
+
+        /* ============================================= */
+        /* POPUP NELLA SEZIONE JACKPOT - FONT ENORMI    */
+        /* ============================================= */
+
+        /* Popup che appare DENTRO il header jackpot */
+        .jackpot-message-popup {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1f2e, #0f131c);
+            border-radius: 32px;
+            border: 3px solid #FFD700;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            animation: messagePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            padding: 20px;
+            box-shadow: 0 0 40px rgba(255,215,0,0.5);
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+        }
+
+        .jackpot-message-popup .main-message {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(2rem, 7vw, 3.5rem);
+            font-weight: 900;
+            color: #FFD700;
+            text-align: center;
+            text-shadow: 0 0 30px #FFD700, 4px 4px 0 #000, 8px 8px 0 rgba(0,0,0,0.5);
+            margin-bottom: 15px;
+            line-height: 1.3;
+            word-break: break-word;
+            letter-spacing: 2px;
+        }
+
+        .jackpot-message-popup .sub-message {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.3rem, 4vw, 2rem);
+            font-weight: 700;
+            color: #ffffff;
+            text-align: center;
+            text-shadow: 0 4px 8px #000, 0 0 20px rgba(255,255,255,0.5);
+            opacity: 1;
+        }
+
+        .jackpot-message-popup .close-hint {
+            position: absolute;
+            bottom: 10px;
+            right: 15px;
+            font-size: 0.9rem;
+            color: #FFD700;
+            font-family: 'Rubik', sans-serif;
+            font-weight: 500;
+            background: rgba(0,0,0,0.5);
+            padding: 3px 10px;
+            border-radius: 20px;
+            border: 1px solid #FFD700;
+        }
+
+        /* Popup jackpot speciale (più grande e visibile) */
+        .jackpot-special-popup {
+            background: linear-gradient(135deg, #000, #2a0f0f);
+            border: 4px solid #FFD700;
+            border-top-color: #FFA500;
+            border-bottom-color: #FF4500;
+        }
+
+        .jackpot-special-popup .main-message {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            background: linear-gradient(135deg, #FFD700, #FFA500, #FF4500, #FFD700);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 50px gold, 4px 4px 0 #000;
+            -webkit-text-stroke: 2px rgba(0,0,0,0.5);
+        }
+
+        .jackpot-special-popup .sub-message {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            color: #FFD700;
+            text-shadow: 0 4px 8px #000;
+        }
+
+        /* Animazioni */
+        @keyframes messagePop {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes messageExit {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        .popup-exit {
+            animation: messageExit 0.3s ease forwards !important;
+        }
+
+        /* Indicatore che si può cliccare */
+        .jackpot-header::after {
+            content: '📌';
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5rem;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            filter: drop-shadow(0 2px 4px #000);
+        }
+
+        .jackpot-header:hover::after {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            .slot-container {
+                padding: 16px;
+            }
+            
+            .reels-grid {
+                gap: 8px;
+            }
+            
+            .reel {
+                min-height: 100px;
+                padding: 15px 4px;
+            }
+            
+            .reel .label {
+                font-size: 0.85rem;
+            }
+            
+            .special-reel .label {
+                font-size: 1rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+                padding: 16px;
+            }
+            
+            .spin-button {
+                width: 120px;
+                height: 120px;
+                font-size: 1.5rem;
+            }
+            
+            .jackpot-header {
+                min-height: 140px;
+            }
+            
+            .jackpot-label {
+                font-size: 1rem;
+            }
+            
+            .jackpot-date {
+                font-size: 0.9rem;
+            }
+            
+            .jackpot-header::after {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .reels-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .special-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slot-container">
+        <!-- HEADER JACKPOT - CLICCABILE PER FAR RIENTRARE I POPUP -->
+        <div class="jackpot-header" id="jackpotHeader" onclick="closeMessagePopup()">
+            <div class="jackpot-label">MONTEPREMI SUPERENALOTTO</div>
+            <div class="jackpot-amount" id="jackpotDisplay">€125.300.000</div>
+            <div class="jackpot-date" id="dateDisplay">Estrazione 24 Febbraio 2026</div>
+        </div>
+
+        <!-- RULLI PRINCIPALI -->
+        <div class="reels-area">
+            <div class="reels-grid">
+                <div class="reel" id="reel1">
+                    <div class="label">RULLO 1</div>
+                    <div class="value" id="num1">-</div>
+                </div>
+                <div class="reel" id="reel2">
+                    <div class="label">RULLO 2</div>
+                    <div class="value" id="num2">-</div>
+                </div>
+                <div class="reel" id="reel3">
+                    <div class="label">RULLO 3</div>
+                    <div class="value" id="num3">-</div>
+                </div>
+                <div class="reel" id="reel4">
+                    <div class="label">RULLO 4</div>
+                    <div class="value" id="num4">-</div>
+                </div>
+                <div class="reel" id="reel5">
+                    <div class="label">RULLO 5</div>
+                    <div class="value" id="num5">-</div>
+                </div>
+                <div class="reel" id="reel6">
+                    <div class="label">RULLO 6</div>
+                    <div class="value" id="num6">-</div>
+                </div>
+            </div>
+
+            <!-- RULLI SPECIALI -->
+            <div class="special-grid">
+                <div class="special-reel jolly" id="jollyReel">
+                    <div class="label">LA ROSSELLA E IL VERO JOLLY</div>
+                    <div class="value" id="jolly">-</div>
+                </div>
+                <div class="special-reel super" id="superReel">
+                    <div class="label">SUPER SANDRO</div>
+                    <div class="value" id="superSandro">-</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PANNELLO CONTROLLI -->
+        <div class="controls">
+            <button class="spin-button" id="spinButton" onclick="spinSlotMachine()">
+                SPIN
+            </button>
+
+            <div class="last-spin-time" id="lastSpin"></div>
+        </div>
+    </div>
+
+    <script>
+        // =========================================
+        // DATI SUPERENALOTTO
+        // =========================================
+        const JACKPOT_AMOUNT = 125300000;
+        const JACKPOT_DATE = "Estrazione 24 Febbraio 2026";
+
+        // =========================================
+        // SISTEMA AUDIO
+        // =========================================
+        class SimpleAudio {
+            constructor() {
+                this.audioContext = null;
+                this.initialized = false;
+            }
+
+            async init() {
+                if (this.initialized) return;
+                this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                this.initialized = true;
+                await this.audioContext.resume();
+            }
+
+            playSound(type) {
+                if (!this.initialized) return;
+                
+                const now = this.audioContext.currentTime;
+                
+                if (type === 'spin') {
+                    for (let i = 0; i < 5; i++) {
+                        const osc = this.audioContext.createOscillator();
+                        osc.type = 'sine';
+                        osc.frequency.value = 200 + i * 50;
+                        
+                        const gain = this.audioContext.createGain();
+                        gain.gain.setValueAtTime(0.1, now + i * 0.1);
+                        gain.gain.exponentialRampToValueAtTime(0.01, now + i * 0.1 + 0.15);
+                        
+                        osc.connect(gain);
+                        gain.connect(this.audioContext.destination);
+                        
+                        osc.start(now + i * 0.1);
+                        osc.stop(now + i * 0.1 + 0.15);
+                    }
+                }
+                
+                if (type === 'stop') {
+                    const osc = this.audioContext.createOscillator();
+                    osc.type = 'sine';
+                    osc.frequency.value = 400;
+                    
+                    const gain = this.audioContext.createGain();
+                    gain.gain.setValueAtTime(0.15, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
+                    
+                    osc.connect(gain);
+                    gain.connect(this.audioContext.destination);
+                    
+                    osc.start(now);
+                    osc.stop(now + 0.1);
+                }
+                
+                if (type === 'win') {
+                    const notes = [523.25, 659.25, 783.99];
+                    notes.forEach((freq, i) => {
+                        const osc = this.audioContext.createOscillator();
+                        osc.type = 'sine';
+                        osc.frequency.value = freq;
+                        
+                        const gain = this.audioContext.createGain();
+                        gain.gain.setValueAtTime(0.15, now + i * 0.15);
+                        gain.gain.exponentialRampToValueAtTime(0.01, now + i * 0.15 + 0.2);
+                        
+                        osc.connect(gain);
+                        gain.connect(this.audioContext.destination);
+                        
+                        osc.start(now + i * 0.15);
+                        osc.stop(now + i * 0.15 + 0.2);
+                    });
+                }
+                
+                if (type === 'jackpot') {
+                    const notes = [261.63, 329.63, 392.00, 523.25, 659.25, 783.99];
+                    notes.forEach((freq, i) => {
+                        setTimeout(() => {
+                            const osc = this.audioContext.createOscillator();
+                            osc.type = 'sine';
+                            osc.frequency.value = freq;
+                            
+                            const gain = this.audioContext.createGain();
+                            gain.gain.setValueAtTime(0.2, this.audioContext.currentTime);
+                            gain.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.25);
+                            
+                            osc.connect(gain);
+                            gain.connect(this.audioContext.destination);
+                            
+                            osc.start();
+                            osc.stop(this.audioContext.currentTime + 0.25);
+                        }, i * 150);
+                    });
+                }
+                
+                if (type === 'popup') {
+                    const osc = this.audioContext.createOscillator();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, now);
+                    osc.frequency.setValueAtTime(659.25, now + 0.05);
+                    
+                    const gain = this.audioContext.createGain();
+                    gain.gain.setValueAtTime(0.08, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
+                    
+                    osc.connect(gain);
+                    gain.connect(this.audioContext.destination);
+                    
+                    osc.start(now);
+                    osc.stop(now + 0.15);
+                }
+            }
+        }
+
+        // Inizializza audio
+        const audio = new SimpleAudio();
+
+        // Variabili di gioco
+        let isSpinning = false;
+        let activePopup = null;
+        let popupTimeout = null;
+        let messageQueue = [];
+        let isMessageVisible = false;
+        
+        const spinButton = document.getElementById('spinButton');
+        const reels = document.querySelectorAll('.reel');
+        const specialReels = document.querySelectorAll('.special-reel');
+        const jackpotHeader = document.getElementById('jackpotHeader');
+
+        // Messaggi per i popup - più brevi e leggibili
+        const popupMessages = [
+            { main: "🎰 125 MILIONI €", sub: "Il jackpot più alto" },
+            { main: "⚡ LA FORTUNA", sub: "È con te" },
+            { main: "👑 SUPER SANDRO", sub: "Porta fortuna" },
+            { main: "💰 JACKPOT", sub: "125,3 milioni" },
+            { main: "✨ VINCI ORA", sub: "La sestina giusta" },
+            { main: "🎯 OGGI È IL GIORNO", sub: "Fidati della fortuna" },
+            { main: "🌟 BUONA FORTUNA", sub: "Credici" },
+            { main: "🔥 CONTINUA", sub: "Ci sei quasi" },
+            { main: "💫 MOMENTO MAGICO", sub: "I numeri stanno per uscire" },
+            { main: "🍀 IN BOCCA AL LUPO", sub: "Che la fortuna sia con te" }
+        ];
+
+        // Funzioni utility
+        function getRandomNumber() {
+            return Math.floor(Math.random() * 90) + 1;
+        }
+
+        function generateSixDifferentNumbers() {
+            const numbers = new Set();
+            while (numbers.size < 6) {
+                numbers.add(getRandomNumber());
+            }
+            return Array.from(numbers);
+        }
+
+        // Funzione per chiudere il popup (chiamata dal click)
+        function closeMessagePopup() {
+            if (activePopup && activePopup.parentNode) {
+                activePopup.classList.add('popup-exit');
+                setTimeout(() => {
+                    if (activePopup && activePopup.parentNode) {
+                        activePopup.parentNode.removeChild(activePopup);
+                    }
+                    activePopup = null;
+                    isMessageVisible = false;
+                    
+                    // Se ci sono messaggi in coda, mostra il prossimo
+                    if (messageQueue.length > 0) {
+                        const nextMsg = messageQueue.shift();
+                        showMessagePopup(nextMsg.main, nextMsg.sub, nextMsg.isJackpot);
+                    }
+                }, 300);
+            }
+        }
+
+        // Mostra popup dentro l'header jackpot
+        function showMessagePopup(mainMessage, subMessage = "", isJackpot = false) {
+            // Se c'è già un messaggio visibile, metti in coda
+            if (isMessageVisible) {
+                messageQueue.push({ main: mainMessage, sub: subMessage, isJackpot: isJackpot });
+                return;
+            }
+            
+            // Rimuovi popup esistente se presente
+            if (activePopup) {
+                activePopup.remove();
+                activePopup = null;
+            }
+            
+            isMessageVisible = true;
+            
+            // Crea il popup
+            const popup = document.createElement('div');
+            popup.className = `jackpot-message-popup ${isJackpot ? 'jackpot-special-popup' : ''}`;
+            
+            // Aggiungi contenuto
+            popup.innerHTML = `
+                <div class="main-message">${mainMessage}</div>
+                ${subMessage ? `<div class="sub-message">${subMessage}</div>` : ''}
+                <div class="close-hint">✕ chiudi</div>
+            `;
+            
+            // Aggiungi al header
+            jackpotHeader.appendChild(popup);
+            activePopup = popup;
+            
+            // Suono
+            audio.playSound(isJackpot ? 'jackpot' : 'popup');
+            
+            // Auto-close dopo 4 secondi per i normali, 5 per il jackpot
+            const duration = isJackpot ? 5000 : 4000;
+            
+            if (popupTimeout) clearTimeout(popupTimeout);
+            
+            popupTimeout = setTimeout(() => {
+                if (activePopup === popup) {
+                    closeMessagePopup();
+                }
+                popupTimeout = null;
+            }, duration);
+        }
+
+        // Mostra messaggio casuale
+        function showRandomMessage() {
+            const randomIndex = Math.floor(Math.random() * popupMessages.length);
+            const msg = popupMessages[randomIndex];
+            showMessagePopup(msg.main, msg.sub);
+        }
+
+        // Rotazione rulli
+        async function spinReels() {
+            const allReels = [...reels, ...specialReels];
+            
+            spinButton.classList.add('disabled');
+            isSpinning = true;
+            
+            allReels.forEach(reel => reel.classList.add('spinning'));
+            audio.playSound('spin');
+            
+            const spinInterval = setInterval(() => {
+                reels.forEach(reel => {
+                    const valEl = reel.querySelector('.value');
+                    if (valEl) valEl.textContent = getRandomNumber();
+                });
+                specialReels.forEach(reel => {
+                    const valEl = reel.querySelector('.value');
+                    if (valEl) valEl.textContent = getRandomNumber();
+                });
+            }, 40);
+            
+            await new Promise(r => setTimeout(r, 1500));
+            clearInterval(spinInterval);
+            
+            for (let i = 0; i < allReels.length; i++) {
+                setTimeout(() => {
+                    allReels[i].classList.remove('spinning');
+                    if (i === allReels.length - 1) audio.playSound('stop');
+                }, i * 80);
+            }
+            
+            await new Promise(r => setTimeout(r, allReels.length * 80 + 200));
+            return true;
+        }
+
+        // Funzione principale
+        async function spinSlotMachine() {
+            await audio.init();
+            if (isSpinning) return;
+            
+            // Chiudi eventuale popup aperto
+            closeMessagePopup();
+            
+            // Mostra popup prima dello spin
+            showMessagePopup("🎰 INIZIA!", "Buona fortuna");
+            
+            await spinReels();
+            
+            const numbers = generateSixDifferentNumbers();
+            numbers.sort((a, b) => a - b);
+            
+            const jolly = getRandomNumber();
+            const superSandro = getRandomNumber();
+            
+            for (let i = 0; i < 6; i++) {
+                document.getElementById(`num${i+1}`).textContent = numbers[i];
+            }
+            document.getElementById('jolly').textContent = jolly;
+            document.getElementById('superSandro').textContent = superSandro;
+            
+            // Chiudi il popup di inizio giocata
+            closeMessagePopup();
+            
+            if (numbers.includes(jolly) && numbers.includes(superSandro)) {
+                showMessagePopup('⚡ JACKPOT ⚡', '125 MILIONI € !!!', true);
+                
+                for (let i = 0; i < 6; i++) {
+                    const el = document.getElementById(`num${i+1}`);
+                    el.classList.add('highlight');
+                    setTimeout(() => el.classList.remove('highlight'), 500);
+                }
+            } 
+            else if (numbers.includes(jolly)) {
+                showMessagePopup('🎯 JOLLY!', '+500 PUNTI');
+                audio.playSound('win');
+                
+                numbers.forEach((num, idx) => {
+                    if (num === jolly) {
+                        const el = document.getElementById(`num${idx+1}`);
+                        el.classList.add('highlight');
+                        setTimeout(() => el.classList.remove('highlight'), 400);
+                    }
+                });
+            }
+            else if (numbers.includes(superSandro)) {
+                showMessagePopup('👑 SUPER SANDRO!', 'TANTA FORTUNA');
+                audio.playSound('win');
+                
+                numbers.forEach((num, idx) => {
+                    if (num === superSandro) {
+                        const el = document.getElementById(`num${idx+1}`);
+                        el.classList.add('highlight');
+                        setTimeout(() => el.classList.remove('highlight'), 400);
+                    }
+                });
+            }
+            else {
+                showMessagePopup('🎲 RIPROVA', 'La prossima volta');
+            }
+            
+            const now = new Date();
+            document.getElementById('lastSpin').textContent = 
+                `Ultima giocata: ${now.toLocaleTimeString('it-IT')}`;
+            
+            spinButton.classList.remove('disabled');
+            isSpinning = false;
+        }
+
+        // Inizializzazione
+        window.addEventListener('load', () => {
+            document.getElementById('jackpotDisplay').textContent = 
+                '€' + JACKPOT_AMOUNT.toLocaleString('it-IT');
+            document.getElementById('dateDisplay').textContent = JACKPOT_DATE;
+            
+            setTimeout(() => spinSlotMachine(), 500);
+            
+            // Mostra messaggio casuale ogni 5 secondi
+            setInterval(() => {
+                if (!isSpinning && !isMessageVisible) {
+                    showRandomMessage();
+                }
+            }, 5000);
+        });
+
+        // Shortcut barra spaziatrice
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space' && !isSpinning) {
+                e.preventDefault();
+                spinSlotMachine();
+            }
+        });
+
+        // Touch migliorato
+        spinButton.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            if (!isSpinning) spinSlotMachine();
+        });
+    </script>
+</body>
+</html>
